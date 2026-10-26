@@ -30,6 +30,19 @@ questions :list[tuple[str, list[str], str]] =[
 
 console=Console()
 
-score, total_correct= play_match()
 
-show_result(score,total_correct)
+while(True):
+    print("Welcome to the quiz game!")
+    print("1 : Play")
+    print("2 : Exit")
+    user_answer = input("Enter your choice (1/2): ").strip()
+
+    if user_answer == "1":
+        score, total_correct=play_match()
+        show_result(score, total_correct)
+    elif user_answer=="2":
+        print("Exiting the quiz game. Goodbye! ")
+        break
+    else :
+        print("Invalid choice. please try again.")
+        continue
