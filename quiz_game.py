@@ -1,4 +1,12 @@
 from rich.console import Console
+from engine import Question
+
+questions :list[tuple[str, list[str], str]] =[
+    Question("The best CMS in the world?", ["A:wordPress", "B: joomla", "C: Drupal","D: Squarespace"],"A"),
+    Question("what is the most popular CMS?",["A: wordpress","B: joomla","C: Drupal","D: Squarespa"],"A"),
+    Question("What CMS is known for its user-friendly interface?",["A: Wordpress","B: Joomla","C: Drupal","D: Squarespa"],"D")
+    ]
+
 def show_result(score,total_correct):
     print(f"yourr score is:{score}")
     print(f"your total correct answer{total_correct}")
@@ -8,9 +16,12 @@ def play_match():
     total_correct = 0
     CORRECT_BUONS=10
     PENALTI=3
-    for question, options, correct in questions:
+    for q in questions:
+        question = q.text
+        options = q.options
+        correct = q.correct
         console.print(question,style="bold yellow")
-        for option in options:
+        for i, option in enumerate(options):
             console.print(f"{option}\n",style="red")
         user_answer: str = input("your answer (A/B/C/D): ".strip().upper())
         if user_answer  == correct:
@@ -22,11 +33,8 @@ def play_match():
             console.print(f"wrong! the correct answer is {correct}.\n ")
     return score, total_correct
 
-questions :list[tuple[str, list[str], str]] =[
-    ("The best CMS in the world?", ["A:wordPress", "B: joomla", "C: Drupal","D: Squarespace"],"A"),
-("what is the most popular CMS?",["A: wordpress","B: joomla","C: Drupal","D: Squarespa"],"A"),
-("What CMS is known for its user-friendly interface?",["A: Wordpress","B: Joomla","C: Drupal","D: Squarespa"],"D")
-]
+
+
 
 console=Console()
 
